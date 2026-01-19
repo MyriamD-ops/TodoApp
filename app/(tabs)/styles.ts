@@ -100,4 +100,14 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+
+   rightAction: {
+   width:100,
+   backgroundColor: 'red',
+   flexDirection:'row',
+   alignItems:'center',
+   justifyContent:'center',
+  },
+
+  
 });
