@@ -4,7 +4,11 @@ import React, { useState } from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 
-const FormAdd = () => {
+interface FormAddProps {
+  onTaskAdded?: () => void;
+}
+
+const FormAdd = ({ onTaskAdded }: FormAddProps) => {
     // Déclaration de la variable TextTache
     const [textTache, setTextTache] = useState('')
     const dispatch = useDispatch() ;
@@ -12,6 +16,9 @@ const FormAdd = () => {
     // Fonction pour ajouter une tâche
     const addTodo = () => {  
     console.log('textTache :', textTache) 
+
+    // Ne rien faire si le champ est vide
+    if (!textTache.trim()) return;
 
     // Formatage de la tâche
     const newTodo = {
@@ -23,6 +30,11 @@ const FormAdd = () => {
    dispatch (ajouter(newTodo)) ;
    setTextTache('');
    console.log('newTodo :', newTodo)
+   
+   // Appeler la callback si elle existe (pour fermer le modal)
+   if (onTaskAdded) {
+     onTaskAdded();
+   }
  }   // end addTodo
 
   return (
